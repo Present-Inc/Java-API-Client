@@ -1,6 +1,7 @@
 package tv.present.models;
 
 import java.util.Calendar;
+import java.util.logging.Logger;
 
 /**
  * Present Abstract Object Model
@@ -8,6 +9,9 @@ import java.util.Calendar;
  * @author Kyle Weisel (kyle@present.tv)
  */
 public abstract class PObject {
+
+    private static final String TAG = "tv.present.models.PObject";
+    private static final Logger PLog = Logger.getLogger(TAG);
 
     protected final String id;
     protected PSubjectiveMeta subjectiveMeta;
@@ -26,6 +30,7 @@ public abstract class PObject {
         this.id = id;
         this.lastUpdateDate = lastUpdateDate;
         this.subjectiveMeta = subjectiveMeta;
+        PLog.info("Constructing PObject object with ID: " + id);
     }
 
     /**
