@@ -38,7 +38,7 @@ public abstract class PUserActivity extends PObject {
         this.subject = subject;
         this.targetUser = targetUserID;
         this.video = video;
-        PLog.info("Creating PUserActivity with ID: " + id);
+        PLog.info("Constructing PUserActivity object with ID: " + id);
     }
 
     /**
