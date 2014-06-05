@@ -13,8 +13,8 @@ public final class PDemand extends PObject {
     private static final String TAG = "tv.present.models.PDemand";
     private static final Logger PLog = Logger.getLogger(TAG);
 
-    private PUser sourceUser;
-    private PUser targetUser;
+    private final PUser sourceUser;
+    private final PUser targetUser;
 
     /**
      * Constructs a demand object.
@@ -28,7 +28,7 @@ public final class PDemand extends PObject {
         super(id, subjectiveMeta, creationDate, lastUpdateDate);
         this.sourceUser = sourceUser;
         this.targetUser = targetUser;
-        PLog.info("Creating demand with ID: " + id);
+        PLog.info("Constructing PDemand object with ID: " + id);
     }
 
     /**
