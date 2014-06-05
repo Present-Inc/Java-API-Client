@@ -14,8 +14,8 @@ public final class PComment extends PObject {
     private static final String TAG = "tv.present.models.PComment";
     private static final Logger PLog = Logger.getLogger(TAG);
 
-    private PVideo targetVideo;
-    private PUser sourceUser;
+    private final PVideo targetVideo;
+    private final PUser sourceUser;
     private String body;
 
     /**
@@ -32,7 +32,7 @@ public final class PComment extends PObject {
         this.body = body;
         this.targetVideo = target;
         this.sourceUser = source;
-        PLog.info("Creating comment with ID: " + id);
+        PLog.info("Constructing PComment object with ID: " + id);
     }
 
     /**
