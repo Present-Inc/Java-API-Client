@@ -28,7 +28,7 @@ public class PUserContext extends PObject {
         super(id, null, creationDate, lastUpdateDate);
         this.sessionToken = sessionToken;
         this.user = user;
-        PLog.info("Created user context with session token " + sessionToken);
+        PLog.info("Construction PUserContext with ID: " + id + " & session token: " + sessionToken);
     }
 
     /**
