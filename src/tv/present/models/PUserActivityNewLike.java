@@ -1,6 +1,7 @@
 package tv.present.models;
 
 import java.util.Calendar;
+import java.util.logging.Logger;
 
 /**
  * Present User Activity New Like Model
@@ -8,6 +9,9 @@ import java.util.Calendar;
  * @author Kyle Weisel (kyle@present.tv)
  */
 public final class PUserActivityNewLike extends PUserActivity {
+
+    private static final String TAG = "tv.present.factories.PUserActivityNewLike";
+    private static final Logger PLog = Logger.getLogger(TAG);
 
     /**
      * Constructs a new PUserActivityNewLike object.
@@ -23,6 +27,7 @@ public final class PUserActivityNewLike extends PUserActivity {
      */
     public PUserActivityNewLike(String id, PSubjectiveMeta subjectiveMeta, Calendar creationDate, Calendar lastUpdateDate, String subject, PUser sourceUser, PVideo video, String targetUserID, boolean isUnread) {
         super(id, subjectiveMeta, creationDate, lastUpdateDate, subject, sourceUser, video, targetUserID, isUnread);
+        PLog.info("Constructing PUserActivityNewLike object with ID: " + id);
     }
 
 }
