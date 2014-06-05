@@ -3,6 +3,7 @@ package tv.present.models;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Logger;
 
 /**
  * Present Video Model
@@ -10,6 +11,9 @@ import java.util.Calendar;
  * @author Kyle Weisel (kyle@present.tv)
  */
 public class PVideo extends PObject {
+
+    private static final String TAG = "tv.present.factories.PVideo";
+    private static final Logger PLog = Logger.getLogger(TAG);
 
     protected ArrayList<PComment> comments = new ArrayList<PComment>();
     protected boolean isAvailable;
@@ -57,6 +61,7 @@ public class PVideo extends PObject {
         this.comments = comments;
         this.creationStart = creationStart;
         this.creationEnd = creationEnd;
+        PLog.info("Constructing PVideo object with ID: " + id);
     }
 
     /**
