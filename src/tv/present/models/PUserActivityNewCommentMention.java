@@ -1,6 +1,7 @@
 package tv.present.models;
 
 import java.util.Calendar;
+import java.util.logging.Logger;
 
 /**
  * Present User Activity New Comment Mention Model
@@ -8,6 +9,9 @@ import java.util.Calendar;
  * @author Kyle Weisel (kyle@present.tv)
  */
 public final class PUserActivityNewCommentMention extends PUserActivity {
+
+    private static final String TAG = "tv.present.factories.PUserActivityNewCommentMention";
+    private static final Logger PLog = Logger.getLogger(TAG);
 
     protected PComment comment;
 
@@ -27,6 +31,7 @@ public final class PUserActivityNewCommentMention extends PUserActivity {
     public PUserActivityNewCommentMention(String id, PSubjectiveMeta subjectiveMeta, Calendar creationDate, Calendar lastUpdateDate, String subject, PComment comment, PUser sourceUser, PVideo video, String targetUserID, boolean isUnread) {
         super(id, subjectiveMeta, creationDate, lastUpdateDate, subject, sourceUser, video, targetUserID, isUnread);
         this.comment = comment;
+        PLog.info("Constructing PUserActivityNewCommentMention object with ID: " + id);
     }
 	
 }
