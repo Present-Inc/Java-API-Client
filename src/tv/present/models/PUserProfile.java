@@ -37,7 +37,7 @@ public final class PUserProfile extends PObject {
 		this.description = description;
 		this.pictureURL = pictureURL;
 		this.websiteURL = websiteURL;
-        PLog.info("Created user profile for " + fullName);
+        PLog.info("Constructing PUserProfile for user: " + fullName);
 	}
 	
 	/**
