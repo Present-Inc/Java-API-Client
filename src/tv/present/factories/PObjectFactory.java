@@ -3,8 +3,9 @@ package tv.present.factories;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import tv.present.api.PAPIUtilities;
 import tv.present.api.PAPIInteractionManager;
+import tv.present.api.PAPIUtilities;
+import tv.present.enumerations.SubjectiveMetaDirection;
 import tv.present.models.*;
 
 import java.net.MalformedURLException;
@@ -120,10 +121,10 @@ public class PObjectFactory {
 
         // Set all of the subjective meta to be used by the user object.
         PSubjectiveMeta subjectiveMeta = new PSubjectiveMeta();
-        subjectiveMeta.setDemand(PSubjectiveMeta.SubjectiveMetaDirection.Backward, userMetaJSON.getJSONObject("demand").getBoolean("backward"));
-        subjectiveMeta.setDemand(PSubjectiveMeta.SubjectiveMetaDirection.Forward, userMetaJSON.getJSONObject("demand").getBoolean("forward"));
-        subjectiveMeta.setFriendship(PSubjectiveMeta.SubjectiveMetaDirection.Backward, userMetaJSON.getJSONObject("friendship").getBoolean("backward"));
-        subjectiveMeta.setFriendship(PSubjectiveMeta.SubjectiveMetaDirection.Forward, userMetaJSON.getJSONObject("friendship").getBoolean("forward"));
+        subjectiveMeta.setDemand(SubjectiveMetaDirection.Backward, userMetaJSON.getJSONObject("demand").getBoolean("backward"));
+        subjectiveMeta.setDemand(SubjectiveMetaDirection.Forward, userMetaJSON.getJSONObject("demand").getBoolean("forward"));
+        subjectiveMeta.setFriendship(SubjectiveMetaDirection.Backward, userMetaJSON.getJSONObject("friendship").getBoolean("backward"));
+        subjectiveMeta.setFriendship(SubjectiveMetaDirection.Forward, userMetaJSON.getJSONObject("friendship").getBoolean("forward"));
 
         // All of the other user attributes
         String id = userObjectJSON.getString("_id");
@@ -229,8 +230,8 @@ public class PObjectFactory {
 
             // Set all of the subjective meta to be used by the user object.
             PSubjectiveMeta subjectiveMeta = new PSubjectiveMeta();
-            subjectiveMeta.setLike(PSubjectiveMeta.SubjectiveMetaDirection.Backward, videoMetaJSON.getJSONObject("like").getBoolean("backward"));
-            subjectiveMeta.setLike(PSubjectiveMeta.SubjectiveMetaDirection.Forward, videoMetaJSON.getJSONObject("like").getBoolean("forward"));
+            subjectiveMeta.setLike(SubjectiveMetaDirection.Backward, videoMetaJSON.getJSONObject("like").getBoolean("backward"));
+            subjectiveMeta.setLike(SubjectiveMetaDirection.Forward, videoMetaJSON.getJSONObject("like").getBoolean("forward"));
 
             // Date stamps
             Calendar creationDate = PAPIUtilities.parseZulu(videoObjectJSON.getString("_creationDate"));
