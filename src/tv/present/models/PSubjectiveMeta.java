@@ -1,5 +1,7 @@
 package tv.present.models;
 
+import tv.present.enumerations.SubjectiveMetaDirection;
+
 import java.util.logging.Logger;
 
 /**
@@ -8,11 +10,6 @@ import java.util.logging.Logger;
  * @author Kyle Weisel (kyle@present.tv)
  */
 public final class PSubjectiveMeta extends PObject {
-
-	public enum SubjectiveMetaDirection {
-		Backward,
-		Forward
-	}
 
     private static final String TAG = "tv.present.models.PSubjectiveMeta";
     private static final Logger PLog = Logger.getLogger(TAG);
@@ -27,6 +24,7 @@ public final class PSubjectiveMeta extends PObject {
 	public PSubjectiveMeta() {
         super(null, null, null, null);
 		/* empty constructor */
+        PLog.info("Constructing PSubjectiveMeta object.");
 	}
 	
 	/**
