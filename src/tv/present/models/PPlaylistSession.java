@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  * Present Playlist Session Model
@@ -11,6 +12,9 @@ import java.util.ArrayList;
  * @author Kyle Weisel (kyle@present.tv)
  */
 public final class PPlaylistSession extends PObject {
+
+    private static final String TAG = "tv.present.models.PPlaylistSession";
+    private static final Logger PLog = Logger.getLogger(TAG);
 
     private boolean shouldFinish;
     private boolean isFinished;
@@ -40,6 +44,7 @@ public final class PPlaylistSession extends PObject {
         this.isAvailable = isAvailable;
         this.windowLength = windowLength;
         this.maxDuration = maxDuration;
+        PLog.info("Constructing PPlaylistSession with ID: " + id);
     }
 
     /**
