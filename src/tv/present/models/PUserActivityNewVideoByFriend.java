@@ -1,6 +1,7 @@
 package tv.present.models;
 
 import java.util.Calendar;
+import java.util.logging.Logger;
 
 /**
  * Present User Activity New Video By Friend Model
@@ -8,6 +9,9 @@ import java.util.Calendar;
  * @author Kyle Weisel (kyle@present.tv)
  */
 public final class PUserActivityNewVideoByFriend extends PUserActivity {
+
+    private static final String TAG = "tv.present.factories.PUserActivityVideoByFriend";
+    private static final Logger PLog = Logger.getLogger(TAG);
 
     /**
      * Constructs a new PUserActivityNewVideoByFriend object.
@@ -23,6 +27,7 @@ public final class PUserActivityNewVideoByFriend extends PUserActivity {
      */
     public PUserActivityNewVideoByFriend(String id, PSubjectiveMeta subjectiveMeta, Calendar creationDate, Calendar lastUpdateDate, String subject, PUser sourceUser, PVideo video, String targetUserID, boolean isUnread) {
         super(id, subjectiveMeta, creationDate, lastUpdateDate, subject, sourceUser, video, targetUserID, isUnread);
+        PLog.info("Constructing PUserActivityNewVideoByFriend object with ID: " + id);
     }
 	
 }
