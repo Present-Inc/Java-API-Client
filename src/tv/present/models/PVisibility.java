@@ -22,6 +22,7 @@ public class PVisibility {
      */
 	public PVisibility() {
 		/* empty constructor */
+        PLog.info("Constructing new PVisibility object.");
 	}
 	
 	/**
