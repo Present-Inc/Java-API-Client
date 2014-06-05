@@ -30,7 +30,7 @@ public final class PMediaSegment extends PObject {
         this.discontinuitySequence = discontinuitySequence;
         this.timeElapsed = timeElapsed;
         this.duration = duration;
-        PLog.info("Creating MediaSegment sequence " + sequence);
+        PLog.info("Constructing MediaSegment sequence " + sequence);
     }
 
     /**
