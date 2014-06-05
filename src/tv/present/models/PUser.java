@@ -33,7 +33,7 @@ public class PUser extends PObject {
         super(id, null, null, null);
         this.username = username;
         this.profile = profile;
-        PLog.info("Created user with username: " + username);
+        PLog.info("Constructing PUser object with ID: " + id + " and username: " + username);
     }
 
     /**
