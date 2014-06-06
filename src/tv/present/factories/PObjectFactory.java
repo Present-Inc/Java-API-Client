@@ -3,8 +3,8 @@ package tv.present.factories;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import tv.present.api.PAPIInteractionManager;
-import tv.present.api.PAPIUtilities;
+import tv.present.api.PAPIInteraction;
+import tv.present.util.PUtilities;
 import tv.present.enumerations.SubjectiveMetaDirection;
 import tv.present.models.*;
 
@@ -30,8 +30,8 @@ public class PObjectFactory {
 
         JSONObject commentObjectJSON = json.getJSONObject("object");
 
-        Calendar creationDate = PAPIUtilities.parseZulu(commentObjectJSON.getString("_creationDate"));
-        Calendar lastUpdateDate = PAPIUtilities.parseZulu(commentObjectJSON.getString("_lastUpdateDate"));
+        Calendar creationDate = PUtilities.parseZulu(commentObjectJSON.getString("_creationDate"));
+        Calendar lastUpdateDate = PUtilities.parseZulu(commentObjectJSON.getString("_lastUpdateDate"));
         //Video video = Video.create(commentObjectJSON.getJSONObject("video"));
         PUser sourceUser = this.constructUserFromJSON(commentObjectJSON.getJSONObject("sourceUser"));
         String body = commentObjectJSON.getString("body");
@@ -46,9 +46,9 @@ public class PObjectFactory {
         // TODO: Build and submit PSubjectiveMetaObject
         JSONObject demandObjectJSON = json.getJSONObject("object");
 
-        Calendar creationDate = PAPIUtilities.parseZulu(demandObjectJSON.getString("_creationDate"));
-        Calendar lastUpdateDate = PAPIUtilities.parseZulu(demandObjectJSON.getString("_lastUpdateDate"));
-        PAPIInteractionManager apiInteractionManager = new PAPIInteractionManager();
+        Calendar creationDate = PUtilities.parseZulu(demandObjectJSON.getString("_creationDate"));
+        Calendar lastUpdateDate = PUtilities.parseZulu(demandObjectJSON.getString("_lastUpdateDate"));
+        PAPIInteraction apiInteractionManager = new PAPIInteraction();
         PUser source = apiInteractionManager.getUserByID(demandObjectJSON.getString("sourceUser"));
         PUser target = this.constructUserFromJSON(demandObjectJSON.getJSONObject("targetUser"));
         String id = demandObjectJSON.getString("_id");
@@ -133,8 +133,8 @@ public class PObjectFactory {
         String emailAddress = userObjectJSON.optString("email");
         PUserProfile profile = this.constructUserProfileFromJSON(userProfileJSON);
 
-        Calendar creationDate = PAPIUtilities.parseZulu(userObjectJSON.getString("_creationDate"));
-        Calendar lastUpdate = PAPIUtilities.parseZulu(userObjectJSON.getString("_lastUpdateDate"));
+        Calendar creationDate = PUtilities.parseZulu(userObjectJSON.getString("_creationDate"));
+        Calendar lastUpdate = PUtilities.parseZulu(userObjectJSON.getString("_lastUpdateDate"));
 
         final int numDemands = userObjectJSON.getJSONObject("demands").getInt("count");
         final int numFollowers = userObjectJSON.getJSONObject("followers").getInt("count");
@@ -173,8 +173,8 @@ public class PObjectFactory {
         String id = activityObject.getString("_id");
         String subject = activityObject.getString("subject");
         String activityType = activityObject.getString("type");
-        Calendar lastUpdate = PAPIUtilities.parseZulu(activityObject.getString("_lastUpdateDate"));
-        Calendar creationDate = PAPIUtilities.parseZulu(activityObject.getString("_creationDate"));
+        Calendar lastUpdate = PUtilities.parseZulu(activityObject.getString("_lastUpdateDate"));
+        Calendar creationDate = PUtilities.parseZulu(activityObject.getString("_creationDate"));
         boolean isUnread = activityObject.getBoolean("isUnread");
         PUser sourceUser = this.constructUserFromJSON(activityObject.getJSONObject("sourceUser"));
         PObjectFactory objectFactory = new PObjectFactory();
@@ -234,10 +234,10 @@ public class PObjectFactory {
             subjectiveMeta.setLike(SubjectiveMetaDirection.Forward, videoMetaJSON.getJSONObject("like").getBoolean("forward"));
 
             // Date stamps
-            Calendar creationDate = PAPIUtilities.parseZulu(videoObjectJSON.getString("_creationDate"));
-            Calendar creationEnd = PAPIUtilities.parseZulu(videoObjectJSON.getJSONObject("creationTimeRange").optString("endDate"));
-            Calendar creationStart = PAPIUtilities.parseZulu(videoObjectJSON.getJSONObject("creationTimeRange").getString("startDate"));
-            Calendar lastUpdateDate = PAPIUtilities.parseZulu(videoObjectJSON.getString("_lastUpdateDate"));
+            Calendar creationDate = PUtilities.parseZulu(videoObjectJSON.getString("_creationDate"));
+            Calendar creationEnd = PUtilities.parseZulu(videoObjectJSON.getJSONObject("creationTimeRange").optString("endDate"));
+            Calendar creationStart = PUtilities.parseZulu(videoObjectJSON.getJSONObject("creationTimeRange").getString("startDate"));
+            Calendar lastUpdateDate = PUtilities.parseZulu(videoObjectJSON.getString("_lastUpdateDate"));
 
             // Major video data
             String id = videoObjectJSON.getString("_id");
@@ -247,7 +247,7 @@ public class PObjectFactory {
             PUser creatorUser;
 
             if (creatorUserJSON == null) {
-                PAPIInteractionManager apiInteractionManager = new PAPIInteractionManager();
+                PAPIInteraction apiInteractionManager = new PAPIInteraction();
                 creatorUser = apiInteractionManager.getUserByID(videoObjectJSON.getString("creatorUser"));
             } else {
                 creatorUser = this.constructUserFromJSON(creatorUserJSON);
