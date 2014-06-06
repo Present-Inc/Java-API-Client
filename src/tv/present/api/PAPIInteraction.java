@@ -2,8 +2,10 @@ package tv.present.api;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import tv.present.enumerations.PGender;
 import tv.present.factories.PObjectFactory;
 import tv.present.models.*;
+import tv.present.util.PUtilities;
 import tv.present.util.PResultSet;
 
 import java.util.ArrayList;
@@ -12,7 +14,7 @@ import java.util.logging.Logger;
 /**
  * Created by kbw28 on 6/5/14.
  */
-public class PAPIInteractionManager {
+public class PAPIInteraction {
 
     private final String TAG = "tv.present.api.PAPIInteractionManager";
     private final Logger PLog = Logger.getLogger(TAG);
@@ -501,7 +503,7 @@ public class PAPIInteractionManager {
      * @param emailAddress is an updated email address as a String.
      * @param phoneNumber is an updated phone number as a String.
      */
-    public boolean updateUserDetails(PUserContext PUserContext, String fullName, String description, PUserProfile.Gender gender, String location, String website, String emailAddress, String phoneNumber) {
+    public boolean updateUserDetails(PUserContext PUserContext, String fullName, String description, PGender gender, String location, String website, String emailAddress, String phoneNumber) {
 
         PAPIBridge connector;
         JSONObject requestBundle = new JSONObject();
@@ -513,7 +515,7 @@ public class PAPIInteractionManager {
             requestBundle.put("description", description);
         }
         if (gender != null) {
-            requestBundle.put("gender", PAPIUtilities.genderToString(gender));
+            requestBundle.put("gender", PUtilities.genderToString(gender));
         }
         if (location != null) {
             requestBundle.put("location", location);
@@ -666,7 +668,7 @@ public class PAPIInteractionManager {
         JSONObject requestBundle = new JSONObject();
         requestBundle.put("title", title);
 
-        PAPIBridge connector = new PAPIBridge(PAPIBridge.HTTPRequestMethod.POST, "videos/create", userContext, requestBundle);;
+        PAPIBridge connector = new PAPIBridge(PAPIBridge.HTTPRequestMethod.POST, "videos/create", userContext, requestBundle);
 
         JSONObject response = connector.makeRequest();
 
@@ -691,7 +693,7 @@ public class PAPIInteractionManager {
      * @param limit is the number of records to return as an integer.
      * @return an ArrayList of PVideo objects of size less than or equal to limit.
      */
-    public ArrayList<PVideo> getHomeVideos(PUserContext userContext, Integer limit, Integer cursor) {
+    public PResultSet<PVideo> getHomeVideos(PUserContext userContext, Integer limit, Integer cursor) {
 
         if (limit == null || limit == 0) { limit = 20; }
         if (cursor == null || cursor == 0) { cursor = 0; }
@@ -715,7 +717,9 @@ public class PAPIInteractionManager {
                 product.add(objectFactory.constructVideoFromJSON(videoJSON));
             }
 
-            return product;
+            PResultSet<PVideo> resultSet = new PResultSet<PVideo>(response.getInt("nextCursor"), product);
+
+            return resultSet;
 
         }
 
