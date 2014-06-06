@@ -1,5 +1,7 @@
 package tv.present.models;
 
+import tv.present.enumerations.PGender;
+
 import java.util.logging.Logger;
 
 /**
@@ -9,12 +11,6 @@ import java.util.logging.Logger;
  */
 public final class PUserProfile extends PObject {
 
-    @SuppressWarnings("unused")
-	public enum Gender {
-		Female,
-		Male
-	}
-
     private static final String TAG = "tv.present.factories.PUserProfile";
     private static final Logger PLog = Logger.getLogger(TAG);
 
@@ -22,7 +18,7 @@ public final class PUserProfile extends PObject {
 	private String fullName;
 	private String pictureURL;
 	private String websiteURL;
-	private Gender gender;
+	private PGender gender;
 
 	/**
 	 * Constructs a PUserProfile.
@@ -49,7 +45,7 @@ public final class PUserProfile extends PObject {
 	 * @param websiteURL is the URL of the user's website as a String.
 	 */
     @SuppressWarnings("unused")
-	public PUserProfile(String fullName, Gender gender, String description, String pictureURL, String websiteURL) {
+	public PUserProfile(String fullName, PGender gender, String description, String pictureURL, String websiteURL) {
         super(null, null, null, null);
         this.gender = gender;
 		this.fullName = fullName;
@@ -81,7 +77,7 @@ public final class PUserProfile extends PObject {
 	 * @return the gender as a Gender enumerated type.
 	 */
     @SuppressWarnings("unused")
-	public final Gender getGender() {
+	public final PGender getGender() {
 		return this.gender;
 	}
 	
@@ -144,7 +140,7 @@ public final class PUserProfile extends PObject {
 	 * @param gender is as Gender enumerated type.
 	 */
     @SuppressWarnings("unused")
-	public final void setGender(final Gender gender) {
+	public final void setGender(final PGender gender) {
 		this.gender = gender;
 	}
 
