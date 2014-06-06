@@ -1,14 +1,14 @@
-package tv.present.api;
+package tv.present.util;
 
 import tv.present.api.PAPIBridge.HTTPRequestMethod;
-import tv.present.models.PUserProfile.Gender;
+import tv.present.enumerations.PGender;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class PAPIUtilities {
+public class PUtilities {
 	
 	public static Calendar parseZulu(String date) {
 		try {
@@ -29,8 +29,8 @@ public class PAPIUtilities {
 		
 	}
 	
-	public static String genderToString(Gender gender) {
-		if (gender == Gender.Female) {
+	public static String genderToString(PGender gender) {
+		if (gender == PGender.Female) {
 			return "Female";
 		}
 		else {
@@ -56,5 +56,28 @@ public class PAPIUtilities {
 
     }
 
+    public static PGender stringToGender(String gender) {
+
+        if (gender == null) {
+            return PGender.Unspecified;
+        }
+        else {
+
+            final String F = "F";
+            final String M = "M";
+
+            if (gender.substring(0,1).toUpperCase().equals(F)) {
+                return PGender.Female;
+            }
+            else if (gender.substring(0, 1).toUpperCase().equals(M)) {
+                return PGender.Male;
+            }
+            else {
+                return PGender.Unspecified;
+            }
+
+        }
+
+    }
 
 }
