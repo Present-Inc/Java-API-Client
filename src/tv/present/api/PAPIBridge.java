@@ -14,7 +14,8 @@ import java.util.Iterator;
 import java.util.logging.Logger;
 
 /**
- * The APIBridge provides a connection to the Present API.
+ * Present API Bridge -- Provides a connection to the Present API.
+ * June 04, 2014
  * @author Kyle Weisel (kyle@present.tv)
  */
 @SuppressWarnings("unused")
