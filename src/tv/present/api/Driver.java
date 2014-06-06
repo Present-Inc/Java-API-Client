@@ -5,11 +5,14 @@ import tv.present.models.PUserContext;
 
 import java.io.IOException;
 
+/**
+ * Test class
+ */
 public class Driver {
 	
 	public static void main(String[] args) throws IOException, APIRequestStateException {
 
-        PAPIInteractionManager apiInteractionManager = new PAPIInteractionManager();
+        PAPIInteraction apiInteractionManager = new PAPIInteraction();
 
 
         PUserContext context = apiInteractionManager.getUserContext("k", "abc123");
@@ -20,7 +23,6 @@ public class Driver {
         else {
             System.out.println("The user context could not be got!");
         }
-
     }
 	
 }
