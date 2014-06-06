@@ -1,5 +1,7 @@
 package tv.present.models;
 
+import tv.present.enumerations.PGender;
+
 import java.util.Calendar;
 import java.util.logging.Logger;
 
@@ -186,7 +188,7 @@ public class PUser extends PObject {
      * @param gender is the new gender to use as a Gender enumerated type.
      */
     @SuppressWarnings("unused")
-    public final void setGender(final PUserProfile.Gender gender) {
+    public final void setGender(final PGender gender) {
         this.getProfile().setGender(gender);
     }
 
